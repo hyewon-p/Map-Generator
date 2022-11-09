@@ -304,7 +304,6 @@
 
       //drag and drop
       const handleDragStart = (e) => {
-        e.dataTransfer.effectAllowed = "move";
         e.dataTransfer.setData("text", e.target.id);
       };
       const handleDragOver = (e) => {
