@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        overflow: hidden;
+      }
+      .box {
+        cursor: move;
+        width: 100%;
+        height: 100%;
+      }
+      .hidden {
+        display: none;
+      }
+      .show {
+        display: flex;
+      }
+      .map-img {
+        width: 100%;
+        height: 100%;
+      }
+      .map-box {
+        background-color: gray;
+      }
+      .border {
+        border: 0.1px solid black;
+      }
+      .btn {
+      }
+      input {
+        width: 50px;
+        height: 20px;
+        margin-right: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex">
+      <div
+        id="map"
+        style="height: 85vh; width: 85vh; background-color: gray"
+      ></div>
+
+      <div>
+        <div
+          style="display: flex; gap: 1rem; margin: 1rem; flex-direction: column"
+        >
+          <form>
+            <label for="xCoor">x:</label>
+            <input id="xCoor" />
+            <label for="yCoor">y:</label>
+            <input id="yCoor" />
+            <button
+              id="fieldGen"
+              style="
+                border: 1px solid black;
+                cursor: pointer;
+                padding: 5px 10px;
+                border-radius: 5px;
+              "
+            >
+              generate field
+            </button>
+          </form>
+          <div style="display: flex; gap: 1rem">
+            <button id="handleBorder">hide border</button>
+            <button id="jsonBtn">generate json</button>
+            <button
+              id="resetBtn"
+              style="
+                background-color: red;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 5px;
+                cursor: pointer;
+              "
+            >
+              reset
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="box-container"
+          style="
+            display: grid;
+            margin: 1rem;
+            gap: 10px;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(8, 100px);
+          "
+        >
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/1-b.png');
+              background-size: 100% 100%;
+            "
+            id="box1"
+            class="1-b box"
+          ></div>
+
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/2-b.png');
+              background-size: 100% 100%;
+            "
+            id="box2"
+            class="2-b box"
+          ></div>
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/3-b.png');
+              background-size: 100% 100%;
+            "
+            id="box3"
+            class="3-b box"
+          ></div>
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/4-b.png');
+              background-size: 100% 100%;
+            "
+            id="box4"
+            class="4-b box"
+          ></div>
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/5-b.png');
+              background-size: 100% 100%;
+            "
+            id="box5"
+            class="5-b box"
+          ></div>
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/6-b.png');
+              background-size: 100% 100%;
+            "
+            id="box6"
+            class="6-b box"
+          ></div>
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/7-b.png');
+              background-size: 100% 100%;
+            "
+            id="box7"
+            class="7-b box"
+          ></div>
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/8-b.png');
+              background-size: 100% 100%;
+            "
+            id="box8"
+            class="8-b box"
+          ></div>
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/9-b.png');
+              background-size: 100% 100%;
+            "
+            id="box9"
+            class="9-b box"
+          ></div>
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/10-b.png');
+              background-size: 100% 100%;
+            "
+            id="box10"
+            class="10-b box"
+          ></div>
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/11-b.png');
+              background-size: 100% 100%;
+            "
+            id="box11"
+            class="11-b box"
+          ></div>
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/12-b.png');
+              background-size: 100% 100%;
+            "
+            id="box12"
+            class="12-b box"
+          ></div>
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/13-b.png');
+              background-size: 100% 100%;
+            "
+            id="box13"
+            class="13-b box"
+          ></div>
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/14-b.png');
+              background-size: 100% 100%;
+            "
+            id="box14"
+            class="14-b box"
+          ></div>
+          <div
+            draggable="true"
+            style="
+              background: no-repeat url('./imgs/15-b.png');
+              background-size: 100% 100%;
+            "
+            id="box15"
+            class="15-b box"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <div
+      id="json-box"
+      class="hidden"
+      style="
+        position: absolute;
+        width: 40vw;
+        height: 50vh;
+        background-color: white;
+        z-index: 1000;
+        top: 15vh;
+        left: 20vw;
+        border: 1px solid gray;
+        border-radius: 25px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <div id="json-inside-box"></div>
+      <button
+        id="json-box-confirm"
+        style="
+          margin-top: 2rem;
+          padding: 1rem 1.5rem;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        "
+      >
+        확인
+      </button>
+    </div>
+    <script>
+      //generate field
+      const fieldGenBtn = document.getElementById("fieldGen");
+      const xCoorEl = document.getElementById("xCoor");
+      const yCoorEl = document.getElementById("yCoor");
+
+      const map = document.getElementById("map");
+
+      //create map grid
+      fieldGenBtn.addEventListener("click", () => {
+        event.preventDefault();
+        const xCoor = Number(xCoorEl.value);
+        const yCoor = Number(yCoorEl.value);
+        const mapElement = new Array(xCoor * yCoor)
+          .fill(".")
+          .map((x, i) => `<div class="map-box border"></div>`);
+        console.log(xCoor.value, yCoor.value, mapElement);
+        map.innerHTML =
+          `<div style="display: grid; height: 85vh; width: 85vh; grid-template-columns: repeat(${xCoor}, 1fr); grid-template-rows: repeat(${yCoor},1fr);">` +
+          mapElement.join("") +
+          `</div>`;
+        document.querySelectorAll(".map-box").forEach((box) => {
+          box.addEventListener("dragover", handleDragOver, false);
+          box.addEventListener("drop", handleDrop, false);
+        });
+      });
+
+      //map reset
+      const resetBtn = document.getElementById("resetBtn");
+      resetBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const clones = document.querySelectorAll(".clonedMap");
+        Array.from(clones).map((e) => e.remove());
+      });
+
+      //drag and drop
+      const handleDragStart = (e) => {
+        e.dataTransfer.effectAllowed = "move";
+        e.dataTransfer.setData("text", e.target.id);
+      };
+      const handleDragOver = (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = "move";
+        return false;
+      };
+      const handleDrop = (e) => {
+        if (e.stopPropagation) {
+          e.stopPropagation();
+        }
+
+        if (e.target.classList[0] == "map-box") {
+          const data = e.dataTransfer.getData("text");
+          clone = document.getElementById(data).cloneNode(true);
+          clone.addEventListener("click", (e) => e.target.remove());
+          clone.classList.add("clonedMap");
+          e.target.appendChild(clone);
+        }
+      };
+
+      document.querySelectorAll(".box").forEach((box) => {
+        box.addEventListener("dragstart", handleDragStart, false);
+        box.addEventListener("drop", handleDrop, false);
+        box.addEventListener("dragover", handleDragOver, false);
+      });
+
+      const jsonBtn = document.getElementById("jsonBtn");
+      const jsonBox = document.getElementById("json-box");
+      const jsonInsideBox = document.getElementById("json-inside-box");
+
+      //generating json
+      jsonBtn.addEventListener("click", () => {
+        const boxes = document.querySelectorAll(".map-box");
+
+        const jsonArray = [];
+        const jsonMap = [];
+
+        Array.from(boxes).map((box) => {
+          box.children[0]
+            ? jsonArray.push(Number(box.children[0].classList[0].split("-", 1)))
+            : jsonArray.push(0);
+        });
+        for (let i = 0; i < jsonArray.length; i += Number(xCoorEl.value)) {
+          jsonLine = "[" + jsonArray.slice(i, i + Number(xCoorEl.value)) + "]";
+          jsonMap.push(jsonLine);
+        }
+        jsonInsideBox.innerHTML = jsonMap
+          .map((map) => `<div>${map},</div>`)
+          .join("");
+
+        jsonBox.classList.remove("hidden");
+        jsonBox.classList.add("show");
+      });
+
+      const jsonConfirm = document.getElementById("json-box-confirm");
+      jsonConfirm.addEventListener("click", () => {
+        jsonBox.classList.remove("show");
+        jsonBox.classList.add("hidden");
+      });
+
+      //border on/off
+      const borderBtn = document.getElementById("handleBorder");
+      borderBtn.addEventListener("click", () => {
+        const mapBoxList = document.querySelectorAll(".map-box");
+        if (borderBtn.innerText == "hide border") {
+          Array.from(mapBoxList).map((box) => {
+            box.classList.remove("border");
+          });
+          borderBtn.innerText = "show border";
+        } else {
+          Array.from(mapBoxList).map((box) => {
+            box.classList.add("border");
+          });
+          borderBtn.innerText = "hide border";
+        }
+      });
+    </script>
+  </body>
+</html>
